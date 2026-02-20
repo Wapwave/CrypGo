@@ -1,0 +1,74 @@
+{
+    "personalInfo": {
+        "name": "Alex Crypto",
+        "title": "Crypto Investor & Blockchain Enthusiast",
+        "bio": "I specialize in identifying high-potential crypto assets and building diversified portfolios. Passionate about DeFi, NFTs, and the future of finance.",
+        "email": "alex@crypto-portfolio.com",
+        "socials": {
+            "twitter": "https://twitter.com/",
+            "linkedin": "https://linkedin.com/",
+            "github": "https://github.com/"
+        }
+    },
+    "hero": {
+        "title": "Build Your Crypto Legacy",
+        "subtitle": "Track, manage, and optimize your digital assets with institutional-grade precision.",
+        "ctaText": "Get Started"
+    },
+    "registration": {
+        "title": "Join the CRYPGO Elite",
+        "subtitle": "Begin your journey into high-performance asset management today.",
+        "ctaText": "Join Now"
+    },
+    "projects": [
+        {
+            "id": 1,
+            "title": "Bitcoin (BTC)",
+            "description": "The digital gold standard. Long-term hold for store of value.",
+            "category": "Store of Value",
+            "allocation": "40%",
+            "performance": "+150% YTD",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg"
+        },
+        {
+            "id": 2,
+            "title": "Ethereum (ETH)",
+            "description": "Smart contract platform powering the decentralized web.",
+            "category": "Smart Contracts",
+            "allocation": "30%",
+            "performance": "+120% YTD",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg"
+        },
+        {
+            "id": 3,
+            "title": "Solana (SOL)",
+            "description": "High-performance blockchain for mass adoption.",
+            "category": "Layer 1",
+            "allocation": "15%",
+            "performance": "+300% YTD",
+            "image": "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png"
+        },
+        {
+            "id": 4,
+            "title": "Chainlink (LINK)",
+            "description": "Decentralized oracle network connecting smart contracts.",
+            "category": "Infrastructure",
+            "allocation": "10%",
+            "performance": "+80% YTD",
+            "image": "https://cryptologos.cc/logos/chainlink-link-logo.png"
+        },
+        {
+            "id": 5,
+            "title": "Polygon (MATIC)",
+            "description": "Ethereum scaling solution.",
+            "category": "Layer 2",
+            "allocation": "5%",
+            "performance": "+90% YTD",
+            "image": "https://cryptologos.cc/logos/polygon-matic-logo.png"
+        }
+    ],
+    "contact": {
+        "title": "Get In Touch",
+        "subtitle": "Have a question or want to discuss a partnership?"
+    }
+}
