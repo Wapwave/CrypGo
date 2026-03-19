@@ -9,110 +9,93 @@ const Contact = ({ contactInfo }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        alert('Crypgo Engine: Message received! We will connect soon.')
+        alert('INQUIRY_TRANSMITTED: Network administrator will contact you via secure channel.')
         setFormData({ name: '', email: '', message: '' })
     }
 
     return (
         <section id="contact" style={{
-            maxWidth: '800px',
+            maxWidth: '1000px',
             margin: '0 auto',
-            textAlign: 'center'
+            padding: '8rem 0'
         }}>
-            <div style={{ marginBottom: '3rem' }}>
-                <h2 style={{ fontSize: '2.5rem', fontWeight: '800', marginBottom: '1rem' }}>
-                    Connect with <span className="text-gradient">CRYPGO</span>
+            <div style={{ textAlign: 'left', marginBottom: '5rem', borderLeft: '4px solid var(--color-primary)', paddingLeft: '2rem' }}>
+                <div style={{ color: 'var(--color-primary)', fontSize: '0.7rem', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.4em', marginBottom: '1rem' }}>Support Node</div>
+                <h2 style={{ fontSize: '2rem', fontWeight: '900', marginBottom: '1rem', letterSpacing: '-0.02em', textTransform: 'uppercase' }}>
+                    Institutional <span className="text-gradient">Communication</span>
                 </h2>
-                <p style={{ color: 'var(--color-text-muted)' }}>
-                    {contactInfo.subtitle} Our institutional-grade support is here for you.
+                <p style={{ color: 'var(--color-text-dim)', maxWidth: '600px', fontWeight: '500' }}>
+                    Direct inquiry channel for sophisticated digital asset investors and institutional partners.
+                    All communications are strictly confidential.
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="glass" style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '2rem',
-                padding: '3rem',
-                borderRadius: '32px',
-                textAlign: 'left'
+            <form onSubmit={handleSubmit} className="module-card" style={{
+                display: 'grid',
+                gap: '2.5rem',
+                padding: '4rem',
+                background: 'var(--color-surface)'
             }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2.5rem' }}>
                     <div>
-                        <label style={{ display: 'block', marginBottom: '0.75rem', fontSize: '0.9rem', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>Full Name</label>
+                        <label style={{ display: 'block', marginBottom: '0.75rem', fontSize: '0.65rem', color: 'var(--color-text-dim)', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Entity Identity</label>
                         <input
                             type="text"
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            placeholder="e.g. John Doe"
+                            placeholder="Full Name / Institution"
                             required
                             style={{
                                 width: '100%',
-                                padding: '1rem 1.25rem',
-                                borderRadius: '12px',
-                                border: '1px solid var(--color-glass-border)',
-                                background: 'rgba(255, 255, 255, 0.05)',
-                                color: 'var(--color-text)',
-                                fontSize: '1rem',
-                                outline: 'none',
-                                transition: 'border-color 0.3s'
+                                padding: '1.25rem',
+                                background: '#07090C'
                             }}
                         />
                     </div>
                     <div>
-                        <label style={{ display: 'block', marginBottom: '0.75rem', fontSize: '0.9rem', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>Email Address</label>
+                        <label style={{ display: 'block', marginBottom: '0.75rem', fontSize: '0.65rem', color: 'var(--color-text-dim)', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Communication Node</label>
                         <input
                             type="email"
                             name="email"
+                            className="mono"
                             value={formData.email}
                             onChange={handleChange}
-                            placeholder="john@example.com"
+                            placeholder="email@node.io"
                             required
                             style={{
                                 width: '100%',
-                                padding: '1rem 1.25rem',
-                                borderRadius: '12px',
-                                border: '1px solid var(--color-glass-border)',
-                                background: 'rgba(255, 255, 255, 0.05)',
-                                color: 'var(--color-text)',
-                                fontSize: '1rem',
-                                outline: 'none',
-                                transition: 'border-color 0.3s'
+                                padding: '1.25rem',
+                                background: '#07090C'
                             }}
                         />
                     </div>
                 </div>
                 <div>
-                    <label style={{ display: 'block', marginBottom: '0.75rem', fontSize: '0.9rem', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>Your Inquiry</label>
+                    <label style={{ display: 'block', marginBottom: '0.75rem', fontSize: '0.65rem', color: 'var(--color-text-dim)', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Technical / Strategic Inquiry</label>
                     <textarea
                         name="message"
-                        rows="5"
+                        rows="6"
                         value={formData.message}
                         onChange={handleChange}
-                        placeholder="How can we assist your digital asset journey?"
+                        placeholder="State your requirements..."
                         required
                         style={{
                             width: '100%',
-                            padding: '1rem 1.25rem',
-                            borderRadius: '12px',
-                            border: '1px solid var(--color-glass-border)',
-                            background: 'rgba(255, 255, 255, 0.05)',
-                            color: 'var(--color-text)',
-                            fontSize: '1rem',
-                            fontFamily: 'inherit',
-                            outline: 'none',
-                            resize: 'none',
-                            transition: 'border-color 0.3s'
+                            padding: '1.25rem',
+                            background: '#07090C',
+                            resize: 'none'
                         }}
                     ></textarea>
                 </div>
-                <button type="submit" className="btn-primary" style={{
-                    padding: '1.25rem',
-                    fontSize: '1.1rem',
-                    borderRadius: '16px'
-                }}>
-                    Initiate Contact
-                </button>
+                <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                    <button type="submit" className="btn-primary" style={{
+                        padding: '1.25rem 4rem',
+                        fontSize: '0.9rem'
+                    }}>
+                        Despatch Message
+                    </button>
+                </div>
             </form>
         </section>
     )

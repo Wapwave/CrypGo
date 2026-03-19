@@ -1,74 +1,68 @@
 {
     "personalInfo": {
-        "name": "Alex Crypto",
-        "title": "Crypto Investor & Blockchain Enthusiast",
-        "bio": "I specialize in identifying high-potential crypto assets and building diversified portfolios. Passionate about DeFi, NFTs, and the future of finance.",
-        "email": "alex@crypto-portfolio.com",
+        "name": "[PERSONAL_INFO_HERE]",
+        "title": "Crypto Investor & Portfolio Manager",
+        "bio": "Managing high-growth digital asset portfolios and exploring the future of decentralized finance.",
+        "email": "your.email@example.com",
         "socials": {
-            "twitter": "https://twitter.com/",
-            "linkedin": "https://linkedin.com/",
-            "github": "https://github.com/"
+            "twitter": "https://twitter.com",
+            "github": "https://github.com",
+            "linkedin": "https://linkedin.com"
         }
     },
     "hero": {
-        "title": "Build Your Crypto Legacy",
-        "subtitle": "Track, manage, and optimize your digital assets with institutional-grade precision.",
-        "ctaText": "Get Started"
+        "title": "CryptoPortfolio",
+        "subtitle": "Track your favorite crypto assets in real-time.",
+        "ctaText": "Deploy Capital"
     },
     "registration": {
-        "title": "Join the CRYPGO Elite",
-        "subtitle": "Begin your journey into high-performance asset management today.",
-        "ctaText": "Join Now"
+        "title": "Apply for Institutional Account",
+        "subtitle": "Gain access to our premium digital asset management tools.",
+        "fields": [
+            "Entity Name",
+            "Contact Person",
+            "Investment Threshold",
+            "Preferred Protocol"
+        ]
+    },
+    "wallet": {
+        "usdt": 10000.00
     },
     "projects": [
         {
             "id": 1,
             "title": "Bitcoin (BTC)",
-            "description": "The digital gold standard. Long-term hold for store of value.",
             "category": "Store of Value",
-            "allocation": "40%",
-            "performance": "+150% YTD",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg"
+            "balance": 0.25,
+            "price": 65000.0,
+            "image": "https://cryptologos.cc/logos/bitcoin-btc-logo.png",
+            "performance": "+12.5%",
+            "allocation": "45%"
         },
         {
             "id": 2,
             "title": "Ethereum (ETH)",
-            "description": "Smart contract platform powering the decentralized web.",
-            "category": "Smart Contracts",
-            "allocation": "30%",
-            "performance": "+120% YTD",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg"
+            "category": "Smart Contract Platform",
+            "balance": 4.5,
+            "price": 3500.0,
+            "image": "https://cryptologos.cc/logos/ethereum-eth-logo.png",
+            "performance": "+8.2%",
+            "allocation": "30%"
         },
         {
             "id": 3,
             "title": "Solana (SOL)",
-            "description": "High-performance blockchain for mass adoption.",
-            "category": "Layer 1",
-            "allocation": "15%",
-            "performance": "+300% YTD",
-            "image": "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png"
-        },
-        {
-            "id": 4,
-            "title": "Chainlink (LINK)",
-            "description": "Decentralized oracle network connecting smart contracts.",
-            "category": "Infrastructure",
-            "allocation": "10%",
-            "performance": "+80% YTD",
-            "image": "https://cryptologos.cc/logos/chainlink-link-logo.png"
-        },
-        {
-            "id": 5,
-            "title": "Polygon (MATIC)",
-            "description": "Ethereum scaling solution.",
-            "category": "Layer 2",
-            "allocation": "5%",
-            "performance": "+90% YTD",
-            "image": "https://cryptologos.cc/logos/polygon-matic-logo.png"
+            "category": "High-Performance L1",
+            "balance": 150.0,
+            "price": 145.0,
+            "image": "https://cryptologos.cc/logos/solana-sol-logo.png",
+            "performance": "+24.8%",
+            "allocation": "15%"
         }
     ],
     "contact": {
-        "title": "Get In Touch",
-        "subtitle": "Have a question or want to discuss a partnership?"
+        "title": "Institutional Inquiries",
+        "email": "institutional@crypgo.io",
+        "phone": "+1 (555) CRYP-GO"
     }
 }

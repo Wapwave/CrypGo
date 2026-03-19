@@ -1,75 +1,111 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
-const Navbar = ({ onToggleEdit, editMode }) => {
-    const [isOpen, setIsOpen] = useState(false)
-    const [scrolled, setScrolled] = useState(false)
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20)
-        }
-        window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
-
+const Navbar = ({ currentUser, onLogout, onLoginClick, nodeStatus, onNavClick, activeView }) => {
     return (
-        <nav className={`glass`} style={{
-            padding: '1.25rem 5%',
+        <nav style={{
+            padding: '1.25rem 0',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
             position: 'sticky',
             top: 0,
             zIndex: 100,
-            transition: 'all 0.3s',
-            marginTop: '1rem',
-            borderRadius: '20px',
-            width: '90%',
+            background: 'var(--color-bg)',
+            borderBottom: '1px solid var(--color-border)',
+            width: '100%',
             maxWidth: 'var(--max-width)',
-            margin: '1rem auto'
+            margin: '0 auto'
         }}>
-            <div style={{ fontSize: '1.75rem', fontWeight: '800', fontFamily: 'var(--font-heading)', letterSpacing: '-1px' }}>
-                <span style={{ color: 'var(--color-primary)' }}>CRYP</span>
-                <span style={{ color: 'var(--color-text)' }}>GO</span>
-            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
+                <div style={{ fontSize: '1.25rem', fontWeight: '900', letterSpacing: '-0.05em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <div style={{ width: '12px', height: '12px', background: 'var(--color-primary)', transition: 'opacity 0.2s', opacity: nodeStatus?.throughput > 1220000 ? 0.6 : 1 }}></div>
+                    <span style={{ color: 'var(--color-text)' }}>CRYPGO</span>
+                </div>
 
-            {/* Desktop Menu */}
-            <div className="desktop-menu" style={{ display: 'flex', gap: '3rem' }}>
-                <a href="#hero" style={{ fontWeight: '500', color: 'var(--color-text)' }}>Home</a>
-                <a href="#projects" style={{ fontWeight: '500', color: 'var(--color-text-muted)' }}>Portfolio</a>
-                <a href="#contact" style={{ fontWeight: '500', color: 'var(--color-text-muted)' }}>Contact</a>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <button
-                    onClick={onToggleEdit}
-                    className={editMode ? "btn-primary" : "btn-secondary"}
-                    style={{
-                        padding: '0.5rem 1rem',
-                        fontSize: '0.8rem',
-                        background: editMode ? 'var(--color-accent)' : 'transparent',
-                        borderColor: editMode ? 'var(--color-accent)' : 'var(--color-border)'
-                    }}
-                >
-                    {editMode ? 'Exit Admin' : 'Admin Mode'}
-                </button>
-                <button className="btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>Login</button>
-                <a href="#registration" className="btn-primary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.9rem', textDecoration: 'none' }}>Get Started</a>
-
-                {/* Mobile Toggle */}
-                <div className="mobile-toggle" onClick={() => setIsOpen(!isOpen)} style={{ display: 'none', cursor: 'pointer', fontSize: '1.5rem' }}>
-                    ☰
+                <div style={{ display: 'flex', gap: '1.5rem' }}>
+                    {['Markets', 'Portfolio', 'Analytics'].map(item => (
+                        <button
+                            key={item}
+                            onClick={() => onNavClick?.(item.toLowerCase())}
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                padding: 0,
+                                cursor: 'pointer',
+                                fontSize: '0.75rem',
+                                fontWeight: '700',
+                                color: activeView === item.toLowerCase() ? 'var(--color-primary)' : 'var(--color-text-dim)',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.1em',
+                                transition: 'color 0.2s',
+                                borderBottom: activeView === item.toLowerCase() ? '1px solid var(--color-primary)' : 'none'
+                            }}
+                        >{item}</button>
+                    ))}
+                    {currentUser?.role === 'admin' && (
+                        <button
+                            onClick={() => onNavClick?.('admin')}
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                padding: 0,
+                                cursor: 'pointer',
+                                fontSize: '0.75rem',
+                                fontWeight: '700',
+                                color: activeView === 'admin' ? 'var(--color-primary)' : 'var(--color-text-dim)',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.1em',
+                                transition: 'color 0.2s'
+                            }}
+                        >Oversight</button>
+                    )}
                 </div>
             </div>
 
-            {/* Mobile Menu Dropdown */}
-            {isOpen && (
-                <div className="mobile-menu glass" style={{ borderRadius: '20px', marginTop: '1rem' }}>
-                    <a href="#hero" onClick={() => setIsOpen(false)}>Home</a>
-                    <a href="#projects" onClick={() => setIsOpen(false)}>Portfolio</a>
-                    <a href="#contact" onClick={() => setIsOpen(false)}>Contact</a>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', paddingRight: '1.25rem', borderRight: '1px solid var(--color-border)' }}>
+                    <div style={{
+                        width: '6px',
+                        height: '6px',
+                        background: 'var(--color-success)',
+                        borderRadius: '50%',
+                        boxShadow: '0 0 8px var(--color-success)',
+                        animation: 'pulse 1s infinite alternate'
+                    }}></div>
+                    <span className="mono" style={{ fontSize: '0.65rem', fontWeight: '700', color: 'var(--color-text-dim)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                        Node_{nodeStatus?.status || 'ACTIVE'} ({nodeStatus?.latency}ms)
+                    </span>
                 </div>
-            )}
+
+                {currentUser ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        <div className="mono" style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--color-text)' }}>
+                            {currentUser.fullName || currentUser.name}
+                        </div>
+                        <button
+                            className="btn-secondary"
+                            style={{ padding: '0.4rem 0.85rem', fontSize: '0.65rem' }}
+                            onClick={onLogout}
+                        >
+                            Sign Out
+                        </button>
+                    </div>
+                ) : (
+                    <button
+                        className="btn-primary"
+                        style={{ padding: '0.5rem 1.25rem' }}
+                        onClick={onLoginClick}
+                    >
+                        Access Terminal
+                    </button>
+                )}
+            </div>
+            <style>{`
+                @keyframes pulse {
+                    from { opacity: 0.4; }
+                    to { opacity: 1; }
+                }
+            `}</style>
         </nav>
     )
 }

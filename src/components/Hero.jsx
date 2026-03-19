@@ -1,80 +1,103 @@
 import React from 'react'
 
-const Hero = ({ data, personalInfo }) => {
+const Hero = ({ data, personalInfo, onStart, nodeStatus }) => {
     return (
         <section id="hero" className="animate-fade-up" style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            textAlign: 'center',
+            alignItems: 'flex-start',
+            textAlign: 'left',
             paddingTop: '8rem',
-            paddingBottom: '8rem'
+            paddingBottom: '6rem',
+            borderBottom: '1px solid var(--color-border)',
+            width: '100%'
         }}>
             <div style={{
-                padding: '0.5rem 1rem',
-                borderRadius: '999px',
-                background: 'rgba(99, 102, 241, 0.1)',
                 color: 'var(--color-primary)',
-                fontSize: '0.875rem',
-                fontWeight: '600',
-                marginBottom: '2rem',
-                border: '1px solid rgba(99, 102, 241, 0.2)'
+                fontSize: '0.8rem',
+                fontWeight: '900',
+                textTransform: 'uppercase',
+                letterSpacing: '0.3em',
+                marginBottom: '1rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
             }}>
-                ✨ The Next Generation of Crypto Investment
+                <div style={{ width: '15px', height: '2px', background: 'var(--color-primary)' }}></div>
+                Institutional Grade
             </div>
 
             <h1 style={{
-                fontSize: 'clamp(3rem, 10vw, 5rem)',
-                lineHeight: '1',
-                marginBottom: '1.5rem',
-                fontWeight: '800',
-                maxWidth: '900px'
+                fontSize: 'clamp(3rem, 6vw, 5rem)',
+                lineHeight: '0.95',
+                marginBottom: '2rem',
+                fontWeight: '900',
+                maxWidth: '900px',
+                textTransform: 'uppercase',
+                fontStyle: 'italic'
             }}>
-                Redefining <span className="text-gradient">Portfolio Management</span>
+                Foundational <br />
+                <span className="text-gradient">Market Intelligence</span>
             </h1>
 
             <p style={{
                 fontSize: '1.25rem',
-                color: 'var(--color-text-muted)',
-                maxWidth: '700px',
-                marginBottom: '3.5rem'
+                color: 'var(--color-text-dim)',
+                maxWidth: '600px',
+                marginBottom: '3rem',
+                lineHeight: '1.5',
+                fontWeight: '500'
             }}>
-                {data.subtitle} Experience a professional dashboard designed for high-conviction digital asset investors.
+                Scalable digital asset infrastructure for sophisticated global investors.
+                CRYPGO delivers institutional-ready connectivity, settlement, and liquidity.
             </p>
 
-            <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-                <button className="btn-primary" style={{ fontSize: '1.1rem', padding: '1rem 2.5rem' }}>
-                    {data.ctaText}
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <button
+                    className="btn-primary"
+                    style={{ padding: '1.25rem 3rem', fontSize: '1rem' }}
+                    onClick={onStart}
+                >
+                    Provision Node
                 </button>
-                <button className="btn-secondary" style={{ fontSize: '1.1rem', padding: '1rem 2.5rem' }}>
-                    Explore Features
+                <button className="btn-secondary" style={{ padding: '1.25rem 3rem', fontSize: '1rem' }}>
+                    Technical Documentation
                 </button>
             </div>
 
-            {/* Stats Board */}
-            <div style={{ marginTop: '5rem', width: '100%' }}>
-                <div style={{
-                    display: 'flex',
-                    gap: '2rem',
-                    justifyContent: 'center',
-                    flexWrap: 'wrap'
-                }}>
-                    {[
-                        { label: 'Managed Assets', value: '$650,000+' },
-                        { label: 'Win Rate', value: '78%' },
-                        { label: 'Years Active', value: '4+' }
-                    ].map((stat, i) => (
-                        <div key={i} className="glass" style={{
-                            padding: '2rem',
-                            borderRadius: '24px',
-                            minWidth: '200px',
-                            textAlign: 'center'
+            {/* Metric Strip - Now Functional */}
+            <div style={{
+                marginTop: '6rem',
+                width: '100%',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gap: '1px',
+                background: 'var(--color-border)',
+                border: '1px solid var(--color-border)'
+            }}>
+                {[
+                    { label: 'Network Throughput', value: `${(nodeStatus?.throughput / 1000000).toFixed(2)}M TPS` },
+                    { label: 'Settlement Latency', value: `${nodeStatus?.latency}ms` },
+                    { label: 'Node Distribution', value: `${nodeStatus?.nodes} NODES` },
+                    { label: 'Uptime Protocol', value: `${nodeStatus?.uptime}%` }
+                ].map((stat, i) => (
+                    <div key={i} style={{
+                        padding: '2.5rem 2rem',
+                        background: 'var(--color-bg)',
+                        textAlign: 'left',
+                        transition: 'background 0.3s'
+                    }}>
+                        <div className="mono" style={{
+                            fontSize: '1.75rem',
+                            fontWeight: '800',
+                            color: stat.label.includes('Throughput') ? 'var(--color-primary)' : 'var(--color-text)',
+                            marginBottom: '0.5rem'
                         }}>
-                            <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--color-text)', marginBottom: '0.5rem' }}>{stat.value}</div>
-                            <div style={{ color: 'var(--color-text-muted)', fontSize: '0.875rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1px' }}>{stat.label}</div>
+                            {stat.value}
                         </div>
-                    ))}
-                </div>
+                        <div style={{ color: 'var(--color-text-muted)', fontSize: '0.65rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.2em' }}>{stat.label}</div>
+                    </div>
+                ))}
             </div>
         </section>
     )

@@ -1,61 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+:root {
+    /* Talos Institutional Palette */
+    --color-bg: #0A0D10;
+    --color-surface: #11161D;
+    --color-surface-hover: #161D26;
+    --color-primary: #00F0A0;
+    /* Talos Professional Green */
+    --color-primary-hover: #00D08A;
+    --color-text: #FFFFFF;
+    --color-text-dim: #9BA3AF;
+    --color-text-muted: #4B5563;
+    --color-border: #1E242C;
+    --color-error: #FF4D4D;
+    --color-success: #00F0A0;
+
+    /* Typography */
+    --font-main: 'Urbanist', sans-serif;
+    --font-data: 'JetBrains Mono', monospace;
+
+    /* Geometry & Spacing */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --max-width: 1400px;
+    --gap-terminal: 1px;
+    /* Used for modular separation */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    line-height: 1.4;
+    overflow-x: hidden;
+}
+
+/* Institutional Layout */
 .app-container {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
 
 main {
     flex: 1;
-    width: 90%;
+    width: 100%;
     max-width: var(--max-width);
     margin: 0 auto;
+    padding: 0 2rem;
 }
 
-section {
-    padding: 6rem 0;
+/* Data Modules */
+.glass,
+.module-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.2s, background 0.2s;
 }
 
+/* Typography Overrides */
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.mono {
+    font-family: var(--font-data);
+    letter-spacing: -0.05em;
+}
+
+/* Talos Style Buttons */
+.btn-primary {
+    background: var(--color-primary);
+    color: #000000;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-main);
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-text-dim);
+}
+
+/* Grid System */
 .grid-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
 }
 
-.card {
-    padding: 1.5rem;
-    border-radius: 20px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* Input Styles */
+input,
+textarea,
+select {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--color-border);
+    color: white;
+    padding: 0.75rem;
+    font-family: var(--font-main);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 0.2s;
 }
 
-.card:hover {
-    transform: translateY(-8px);
+input:focus {
     border-color: var(--color-primary);
-    background: var(--color-surface-hover);
 }
 
-/* Animations */
-@keyframes fadeInUp {
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+}
+
+/* Text Gradients (Minimal) */
+.text-gradient {
+    color: var(--color-primary);
+}
+
+/* Performance Visuals */
+.trend-up {
+    color: var(--color-success);
+}
+
+.trend-down {
+    color: var(--color-error);
+}
+
+/* Animation */
+.animate-fade-up {
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(10px);
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-.animate-fade-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-}
-
-@media (max-width: 768px) {
-    section {
-        padding: 3rem 0;
-    }
-
-    .grid-gallery {
-        grid-template-columns: 1fr;
     }
 }

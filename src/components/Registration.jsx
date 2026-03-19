@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
-const Registration = ({ registrationData }) => {
+const Registration = ({ onRegister }) => {
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
-        username: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
     })
 
     const handleChange = (e) => {
@@ -14,139 +14,87 @@ const Registration = ({ registrationData }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        alert(`Welcome to CRYPGO, ${formData.fullName}! Your institutional account is being provisioned.`)
-        setFormData({ fullName: '', email: '', username: '', password: '' })
+        if (formData.password !== formData.confirmPassword) {
+            alert("Credentials mismatch")
+            return
+        }
+        onRegister(formData)
     }
 
     return (
-        <section id="registration" style={{
-            maxWidth: '1000px',
-            margin: '0 auto',
-            padding: '6rem 0'
-        }}>
-            <div className="glass" style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                borderRadius: '32px',
-                overflow: 'hidden',
-                border: '1px solid var(--color-glass-border)'
-            }}>
-                {/* Left Side: Marketing */}
-                <div style={{
-                    padding: '4rem',
-                    background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(244, 63, 94, 0.05) 100%)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    textAlign: 'left'
-                }}>
-                    <h2 style={{ fontSize: '2.5rem', fontWeight: '800', marginBottom: '1.5rem', lineHeight: '1.1' }}>
-                        {registrationData.title}
-                    </h2>
-                    <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', marginBottom: '2rem' }}>
-                        {registrationData.subtitle}
-                    </p>
-                    <ul style={{ listStyle: 'none', color: 'var(--color-text)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <li>✓ Real-time Asset Tracking</li>
-                        <li>✓ Institutional Security</li>
-                        <li>✓ Advanced Yield Management</li>
-                        <li>✓ 24/7 Priority Support</li>
-                    </ul>
+        <section id="registration" style={{ padding: '8rem 0', background: 'var(--color-bg)' }}>
+            <div className="module-card" style={{ maxWidth: '520px', margin: '0 auto', padding: '4rem', borderTop: '4px solid var(--color-primary)' }}>
+                <div style={{ textAlign: 'left', marginBottom: '3.5rem' }}>
+                    <div style={{ color: 'var(--color-primary)', fontSize: '0.7rem', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.3em', marginBottom: '1rem' }}>Provisioning</div>
+                    <h2 style={{ fontSize: '1.75rem', fontWeight: '900', marginBottom: '1rem', letterSpacing: '-0.02em' }}>Institutional Onboarding</h2>
+                    <p style={{ color: 'var(--color-text-dim)', fontSize: '0.9rem', fontWeight: '500' }}>Initialize your secure footprint on the CRYPGO network.</p>
                 </div>
 
-                {/* Right Side: Form */}
-                <div style={{ padding: '4rem' }}>
-                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                        <div>
-                            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.8rem', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase' }}>Full Name</label>
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
+                    <div className="input-group">
+                        <label style={{ display: 'block', fontSize: '0.6rem', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.75rem', color: 'var(--color-text-muted)', letterSpacing: '1px' }}>Legal Entity Name</label>
+                        <input
+                            type="text"
+                            name="fullName"
+                            value={formData.fullName}
+                            onChange={handleChange}
+                            required
+                            placeholder="Full Name"
+                            style={{ width: '100%', padding: '1rem', background: '#07090C' }}
+                        />
+                    </div>
+                    <div className="input-group">
+                        <label style={{ display: 'block', fontSize: '0.6rem', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.75rem', color: 'var(--color-text-muted)', letterSpacing: '1px' }}>Authorized Node Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            className="mono"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            placeholder="email@institution.com"
+                            style={{ width: '100%', padding: '1rem', background: '#07090C' }}
+                        />
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                        <div className="input-group">
+                            <label style={{ display: 'block', fontSize: '0.6rem', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.75rem', color: 'var(--color-text-muted)', letterSpacing: '1px' }}>Access Key</label>
                             <input
-                                type="text"
-                                name="fullName"
-                                value={formData.fullName}
+                                type="password"
+                                name="password"
+                                className="mono"
+                                value={formData.password}
                                 onChange={handleChange}
                                 required
-                                placeholder="John Carter"
-                                style={{
-                                    width: '100%',
-                                    padding: '1rem',
-                                    borderRadius: '12px',
-                                    border: '1px solid var(--color-glass-border)',
-                                    background: 'rgba(255, 255, 255, 0.05)',
-                                    color: 'white',
-                                    outline: 'none'
-                                }}
+                                placeholder="••••••••"
+                                style={{ width: '100%', padding: '1rem', background: '#07090C' }}
                             />
                         </div>
-                        <div>
-                            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.8rem', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase' }}>Email Address</label>
+                        <div className="input-group">
+                            <label style={{ display: 'block', fontSize: '0.6rem', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.75rem', color: 'var(--color-text-muted)', letterSpacing: '1px' }}>Verify Key</label>
                             <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
+                                type="password"
+                                name="confirmPassword"
+                                className="mono"
+                                value={formData.confirmPassword}
                                 onChange={handleChange}
                                 required
-                                placeholder="john@carter.com"
-                                style={{
-                                    width: '100%',
-                                    padding: '1rem',
-                                    borderRadius: '12px',
-                                    border: '1px solid var(--color-glass-border)',
-                                    background: 'rgba(255, 255, 255, 0.05)',
-                                    color: 'white',
-                                    outline: 'none'
-                                }}
+                                placeholder="••••••••"
+                                style={{ width: '100%', padding: '1rem', background: '#07090C' }}
                             />
                         </div>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                            <div>
-                                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.8rem', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase' }}>Username</label>
-                                <input
-                                    type="text"
-                                    name="username"
-                                    value={formData.username}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="jcarter"
-                                    style={{
-                                        width: '100%',
-                                        padding: '1rem',
-                                        borderRadius: '12px',
-                                        border: '1px solid var(--color-glass-border)',
-                                        background: 'rgba(255, 255, 255, 0.05)',
-                                        color: 'white',
-                                        outline: 'none'
-                                    }}
-                                />
-                            </div>
-                            <div>
-                                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.8rem', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase' }}>Password</label>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="••••••••"
-                                    style={{
-                                        width: '100%',
-                                        padding: '1rem',
-                                        borderRadius: '12px',
-                                        border: '1px solid var(--color-glass-border)',
-                                        background: 'rgba(255, 255, 255, 0.05)',
-                                        color: 'white',
-                                        outline: 'none'
-                                    }}
-                                />
-                            </div>
-                        </div>
-                        <button type="submit" className="btn-primary" style={{ marginTop: '1.5rem', padding: '1.25rem' }}>
-                            {registrationData.ctaText}
-                        </button>
-                        <p style={{ textAlign: 'center', fontSize: '0.8rem', color: 'var(--color-text-muted)' }}>
-                            By joining, you agree to the Crypgo Terms of Service.
-                        </p>
-                    </form>
-                </div>
+                    </div>
+
+                    <button type="submit" className="btn-primary" style={{ padding: '1.25rem', marginTop: '1.5rem', fontSize: '0.9rem' }}>
+                        Initiate Provisioning
+                    </button>
+                </form>
+
+                <p style={{ textAlign: 'left', marginTop: '3rem', fontSize: '0.7rem', color: 'var(--color-text-muted)', fontWeight: '600', lineHeight: '1.6' }}>
+                    By requesting provisioning, you certify compliance with <br />
+                    <a href="#" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>Institutional Terms of Network Access</a>.
+                </p>
             </div>
         </section>
     )
